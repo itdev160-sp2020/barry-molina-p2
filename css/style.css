@@ -3,4 +3,10 @@ main {
 }
 #map-div {
     display: inline-block;
+    position: relative;
+}
+#redpin {
+    position: absolute;
+    left: 776px;
+    top: 201px;
 }
