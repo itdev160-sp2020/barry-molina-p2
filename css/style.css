@@ -5,8 +5,10 @@ main {
     display: inline-block;
     position: relative;
 }
-#redpin {
+#map-div:hover {
+    cursor: pointer;
+}
+
+.pin {
     position: absolute;
-    left: 776px;
-    top: 201px;
 }
