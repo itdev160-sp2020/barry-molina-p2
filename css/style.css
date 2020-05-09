@@ -5,10 +5,25 @@ main {
     display: inline-block;
     position: relative;
 }
-#map-div:hover {
+/*#map-div:hover {
     cursor: pointer;
-}
+}*/
 
 .pin {
     position: absolute;
+}
+
+#info-box {
+    position: absolute;
+    min-height: 100px;
+    width: 300px;
+    border: 1px solid black;
+    background-color: white;
+    z-index: 999;
+    display: none;
+}
+
+#location-img {
+    max-width: 90%;
+    margin-bottom: 10px;
 }
