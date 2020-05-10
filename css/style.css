@@ -1,3 +1,6 @@
+body {
+    font-family: 'Open Sans', sans-serif;
+}
 main {
     text-align: center;
 }
@@ -26,4 +29,26 @@ main {
 #location-img {
     max-width: 90%;
     margin-bottom: 10px;
+}
+
+/* modal styles */
+#info-dialog {
+    text-align: left;
+    display: none;
+    position: absolute;
+    padding: 10px;
+    border: solid 1px #555;
+    background-color: #fff;
+    z-index: 99999;
+    width: 300px;
+    height: 300px;
+}
+
+#edit-name-text {
+    width: 100%;
+    box-sizing: border-box;
+}
+#edit-description-text {
+    width: 100%;
+    box-sizing: border-box;
 }

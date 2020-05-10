@@ -5,6 +5,9 @@ $(function() {
 
     var $map = $('#map-div');
     var $info = $('#info-box');
+    var $dialog = $('#info-dialog');
+    var $currentPin = null;
+    var currentLocation = null;
 
     var locations = [
         {
@@ -17,26 +20,32 @@ $(function() {
         }
     ];
 
-    function addPin(pin) {
-        var $pin = $('<img src="' + PIN_IMG + '" id="pin-' + pin.id + '" class="pin" alt="pin">');
+    function location(id, left, top) {
+        this.id = id;
+        this.left = left;
+        this.top = top;
+    }
+
+    function addPin(location) {
+        var $pin = $('<img src="' + PIN_IMG + '" id="pin-' + location.id + '" class="pin" alt="pin">');
         var $img = $info.find('#location-img');
 
         $map.append($pin);
         $pin.css({
-            'left': calcPinLeft(pin.left) + 'px', 
-            'top': calcPinTop(pin.top) + 'px'
+            'left': calcPinLeft(location.left) + 'px', 
+            'top': calcPinTop(location.top) + 'px'
         });
         $pin.on('mouseenter mouseleave', function(e) {
             if (e.type === 'mouseenter') {
                 $info.css({
-                    'left': pin.left,
-                    'top': pin.top
+                    'left': location.left,
+                    'top': location.top
                 });
-                $info.find('#location-name').text(pin.name);
-                $info.find('#location-description').text(pin.description);
+                $info.find('#location-name').text(location.name);
+                $info.find('#location-description').text(location.description);
 
-                if (pin.img) {
-                    $img.attr('src', pin.img);
+                if (location.img) {
+                    $img.attr('src', location.img);
                 }
                 else {
                     $img.attr('src', '');
@@ -49,18 +58,53 @@ $(function() {
                 $info.fadeOut(300);
             }
         });
+        return $pin;
+    }
+
+    function openDialog(location) {
+        $dialog.css({
+            'left': location.left,
+            'top': location.top
+        });
+        $dialog.fadeIn(300);
+    }
+
+    function saveLocation() {
+        var name = $dialog.find('#edit-name-text').val();
+        var desc = $dialog.find('#edit-description-text').val();
+
+        currentLocation.name = name;
+        currentLocation.description = desc;
+
+        locations.push(currentLocation);
+        closeDialog();
+    }
+
+    function cancelPin() {
+        $currentPin.remove();
+        closeDialog();
+    }
+
+    function closeDialog() {
+        $currentLocation = null;
+        $currentPin = null;
+        $dialog.hide();
+        $dialog.find('#edit-name-text').val('');
+        $dialog.find('#edit-description-text').val('');
     }
 
     function addLocation(e) {
-        var location = {
-            id: locations[locations.length - 1].id + 1,
-            name: '',
-            description: '',
-            left: calcMapLeft(e.pageX),
-            top: calcMapTop(e.pageY)
+        if ($currentPin) {
+            cancelPin();
         }
-        locations.push(location);
-        addPin(location);
+        currentLocation = new location(
+            locations[locations.length - 1].id + 1,
+            calcMapLeft(e.pageX),
+            calcMapTop(e.pageY)
+        )
+        //locations.push(currentLocation);
+        $currentPin = addPin(currentLocation);
+        openDialog(currentLocation);
         console.log(locations);
     }
 
@@ -84,7 +128,12 @@ $(function() {
 
     function init() {
         addPin(locations[0]);
-        $map.on('click', addLocation)
+        $map.on('click', addLocation);
+        $dialog.on('click', function(e) {
+            e.stopPropagation();
+        })
+        $('#cancel-button').on('click', cancelPin);
+        $('#save-button').on('click', saveLocation)
     }
     
     init();

@@ -9,6 +9,7 @@
     <body>
         <header id="main-header">
             <h1>Road Trip Across the USA!</h1>
+            <h2>Click Anywhere on the Map to Add a New Location!</h2>
         </header>
         <main>
             <div id="map-div">
@@ -17,6 +18,22 @@
                     <h2 id="location-name"></h2>
                     <p id="location-description"></p>
                     <img id="location-img">
+                </div>
+                <div id="info-dialog">
+                    <section>
+                        <h2>Location Name</h2>
+                        <input type="text" id="edit-name-text">
+                        <span id="edit-name-message"></span>
+                    </section>
+                    <section>
+                        <h2>Location Description</h2>
+                        <textarea id="edit-description-text" cols="8" rows="6"></textarea>
+                        <span id="edit-description-message"></span>
+                    </section>
+                    <footer>
+                        <button type="button" id="cancel-button">Cancel</button>
+                        <button type="button" id="save-button">Save</button>
+                    </footer>
                 </div>
             </div>
         </main>
