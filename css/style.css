@@ -1,6 +1,17 @@
 body {
     font-family: 'Open Sans', sans-serif;
 }
+header {
+    text-align: center;
+    font-family: 'Luckiest Guy', cursive;
+}
+h1 {
+    font-size: 3em;
+    letter-spacing: .1em;
+}
+h2 {
+    letter-spacing: .05em;
+}
 main {
     text-align: center;
 }
@@ -8,9 +19,6 @@ main {
     display: inline-block;
     position: relative;
 }
-/*#map-div:hover {
-    cursor: pointer;
-}*/
 
 .pin {
     position: absolute;
@@ -32,7 +40,7 @@ main {
     border: 1px solid black;
 }
 
-/* modal styles */
+/* diolog styles */
 #info-dialog {
     text-align: left;
     display: none;

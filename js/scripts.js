@@ -135,10 +135,9 @@ $(function() {
             calcMapLeft(e.pageX),
             calcMapTop(e.pageY)
         )
-        //locations.push(currentLocation);
         $currentPin = addPin(currentLocation);
         openDialog(currentLocation);
-        console.log(locations);
+        //console.log(locations);
     }
 
     function showInfo() {
