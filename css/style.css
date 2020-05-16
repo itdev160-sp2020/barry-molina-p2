@@ -24,11 +24,12 @@ main {
     background-color: white;
     z-index: 999;
     display: none;
+    padding: 1em;
 }
 
 #location-img {
-    max-width: 90%;
-    margin-bottom: 10px;
+    max-width: 100%;
+    border: 1px solid black;
 }
 
 /* modal styles */
@@ -36,12 +37,12 @@ main {
     text-align: left;
     display: none;
     position: absolute;
-    padding: 10px;
     border: solid 1px #555;
     background-color: #fff;
     z-index: 99999;
     width: 300px;
     height: 300px;
+    padding: 1em;
 }
 
 #edit-name-text {

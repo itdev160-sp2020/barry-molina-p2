@@ -17,6 +17,38 @@ $(function() {
             img: 'images/milwaukeeMuseum.jpeg',
             left: 790,
             top: 249
+        },
+        {
+            id: 2,
+            name: 'Golden Gate Bridge',
+            description: 'Until 1964, the Golden Gate Bridge had the longest suspension bridge main span in the world at 4,200 feet.',
+            img: 'images/goldengatebridge.png',
+            left: 30,
+            top: 325
+        },
+        {
+            id: 3,
+            name: 'Old Faithful',
+            description: 'Old Faithful is a highly predictable geothermal feature, and has erupted every 44 minutes to two hours since 2000.',
+            img: 'images/oldfaithful.jpg',
+            left: 322,
+            top: 192
+        },
+        {
+            id: 4,
+            name: 'Grand Canyon',
+            description: 'The Grand Canyon is a steep-sided canyon carved by the Colorado River in Arizona, United States. The Grand Canyon is 277 miles long, up to 18 miles wide and attains a depth of over a mile.',
+            img: 'images/grandcanyon.jpg',
+            left: 243,
+            top: 423
+        },
+        {
+            id: 5,
+            name: 'Mount Rushmore',
+            description: 'Mount Rushmore roughly 60-ft. high and depict U.S. presidents George Washington, Thomas Jefferson, Theodore Roosevelt and Abraham Lincoln.',
+            img: 'images/mountrushmore.jpg',
+            left: 472,
+            top: 222
         }
     ];
 
@@ -46,9 +78,10 @@ $(function() {
 
                 if (location.img) {
                     $img.attr('src', location.img);
+                    $img.show();
                 }
                 else {
-                    $img.attr('src', '');
+                    $img.hide();
                 }
                 $info.stop();
                 $info.fadeIn(300);
@@ -127,7 +160,9 @@ $(function() {
     }
 
     function init() {
-        addPin(locations[0]);
+        for (var i = 0; i < locations.length; i++) {
+            addPin(locations[i]);
+        }
         $map.on('click', addLocation);
         $dialog.on('click', function(e) {
             e.stopPropagation();
